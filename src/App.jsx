@@ -2,8 +2,6 @@ import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./Routes/Routes";
 
-import { useEffect, useState } from "react";
-import axios from "axios";
 import MainContext from "./Context/Context";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -13,33 +11,37 @@ import { BASE_URL } from "../public/BASE_URL";
 function App() {
   // const [user, setUser] = useState(null);
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
   useEffect(() => {
     const axiosData = async () => {
-      try{
+      try {
         const responses = await axios.all([
-          axios.get(`${BASE_URL}/products`)
+          axios.get(`${BASE_URL}/products`),
+          axios.get(`${BASE_URL}/Categories`),
         ]);
-        const [resProducts] = responses
-        setProducts(resProducts.data.data)
-        console.log(resProducts.data.data)
-      }
-      catch (error){
-        console.log("Fetching Problem",error)
+        const [resProducts, resCategories] = responses;
+        setProducts(resProducts.data.data);
+        setCategories(resCategories.data.data);
+        console.log(resCategories.data.data);
+        console.log(resProducts.data.data);
+      } catch (error) {
+        console.log("Fetching Problem", error);
       }
     };
-    axiosData()
+    axiosData();
   }, []);
   const contextData = {
     products,
     setProducts,
     error,
-    setError
+    setError,
+    categories,
+    setCategories,
   };
 
-
   return (
-    <MainContext.Provider value={{ categories }}>
+    <MainContext.Provider value={contextData}>
       <RouterProvider router={router} />
     </MainContext.Provider>
   );
