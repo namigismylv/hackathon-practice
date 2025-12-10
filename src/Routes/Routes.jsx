@@ -26,6 +26,7 @@ import UpcomingSessions from "../Trainer/UpcomingSessions";
 import TrainerListMember from "../Member/TrainerList";
 import SessionCalendar from "../Member/SessionCalendar";
 import MyReservations from "../Member/MyReservations";
+import CategoryList from "../Admin/CategoryList";
 import Products from "../Products/Products";
 
 const router = createBrowserRouter([
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
       <MyReservations />
       // </ProtectedRoute>
     ),
+  },
+  {
+    path: "/admin/categories",
+    element: <CategoryList />,
   },
 
   // 404

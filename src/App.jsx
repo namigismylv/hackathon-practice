@@ -1,7 +1,9 @@
-// src/App.jsx
 import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./Routes/Routes";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
 import MainContext from "./Context/Context";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -34,8 +36,10 @@ function App() {
     error,
     setError
   };
+
+
   return (
-    <MainContext.Provider value={contextData}>
+    <MainContext.Provider value={{ categories }}>
       <RouterProvider router={router} />
     </MainContext.Provider>
   );
