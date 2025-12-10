@@ -1,11 +1,12 @@
-import React from 'react'
-
+import React from "react";
+import MainContext from "../Context/Context";
+import { useContext } from "react";
 const Login = () => {
-  return (
-    <div>
-      login
-    </div>
-  )
-}
+  const { categories } = useContext(MainContext);
 
-export default Login
+  return (
+  <div></div>
+  );
+};
+
+export default Login;
