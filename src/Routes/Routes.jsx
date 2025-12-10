@@ -27,11 +27,17 @@ import TrainerListMember from "../Member/TrainerList";
 import SessionCalendar from "../Member/SessionCalendar";
 import MyReservations from "../Member/MyReservations";
 import CategoryList from "../Admin/CategoryList";
+import Products from "../Products/Products";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Navigate to="/login" />,
+  },
+  // Product
+  {
+    path: "/products",
+    element: <Products />,
   },
 
   // AUTH
@@ -49,7 +55,7 @@ const router = createBrowserRouter([
     path: "/admin/trainers",
     element: (
       // <ProtectedRoute allowedRoles={["Admin"]}>
-        <TrainerList />
+      <TrainerList />
       // </ProtectedRoute>
     ),
   },
@@ -57,7 +63,7 @@ const router = createBrowserRouter([
     path: "/admin/trainers/add",
     element: (
       // <ProtectedRoute allowedRoles={["Admin"]}>
-        <AddTrainer />
+      <AddTrainer />
       // </ProtectedRoute>
     ),
   },
@@ -65,7 +71,7 @@ const router = createBrowserRouter([
     path: "/admin/sessions",
     element: (
       // <ProtectedRoute allowedRoles={["Admin"]}>
-        <SessionList />
+      <SessionList />
       // </ProtectedRoute>
     ),
   },
@@ -73,7 +79,7 @@ const router = createBrowserRouter([
     path: "/admin/sessions/add",
     element: (
       // <ProtectedRoute allowedRoles={["Admin"]}>
-        <AddSession />
+      <AddSession />
       // </ProtectedRoute>
     ),
   },
@@ -83,7 +89,7 @@ const router = createBrowserRouter([
     path: "/operator/members",
     element: (
       // <ProtectedRoute allowedRoles={["Operator"]}>
-        <MemberList />
+      <MemberList />
       // </ProtectedRoute>
     ),
   },
@@ -91,7 +97,7 @@ const router = createBrowserRouter([
     path: "/operator/reservations/add",
     element: (
       // <ProtectedRoute allowedRoles={["Operator"]}>
-        <AddReservation />
+      <AddReservation />
       // </ProtectedRoute>
     ),
   },
@@ -99,7 +105,7 @@ const router = createBrowserRouter([
     path: "/operator/members/:memberId/reservations",
     element: (
       // <ProtectedRoute allowedRoles={["Operator"]}>
-        <MemberReservations />
+      <MemberReservations />
       // </ProtectedRoute>
     ),
   },
@@ -109,7 +115,7 @@ const router = createBrowserRouter([
     path: "/trainer/today",
     element: (
       // <ProtectedRoute allowedRoles={["Trainer"]}>
-        <TodaySessions />
+      <TodaySessions />
       // </ProtectedRoute>
     ),
   },
@@ -117,7 +123,7 @@ const router = createBrowserRouter([
     path: "/trainer/upcoming",
     element: (
       // <ProtectedRoute allowedRoles={["Trainer"]}>
-        <UpcomingSessions />
+      <UpcomingSessions />
       // </ProtectedRoute>
     ),
   },
@@ -127,7 +133,7 @@ const router = createBrowserRouter([
     path: "/member/trainers",
     element: (
       // <ProtectedRoute allowedRoles={["Member"]}>
-        <TrainerListMember />
+      <TrainerListMember />
       // </ProtectedRoute>
     ),
   },
@@ -135,7 +141,7 @@ const router = createBrowserRouter([
     path: "/member/calendar",
     element: (
       // <ProtectedRoute allowedRoles={["Member"]}>
-        <SessionCalendar />
+      <SessionCalendar />
       // </ProtectedRoute>
     ),
   },
@@ -143,7 +149,7 @@ const router = createBrowserRouter([
     path: "/member/my-reservations",
     element: (
       // <ProtectedRoute allowedRoles={["Member"]}>
-        <MyReservations />
+      <MyReservations />
       // </ProtectedRoute>
     ),
   },

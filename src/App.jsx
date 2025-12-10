@@ -5,32 +5,38 @@ import router from "./Routes/Routes";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MainContext from "./Context/Context";
-
-const BASE_URL = "http://13.61.183.66:5000/api";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../public/BASE_URL";
+// import { useMemo, useState } from "react";
 
 function App() {
-  const [categories, setCategories] = useState([]);
-
-  const fetchCategories = async () => {
-    try {
-      const res = await axios.get(`${BASE_URL}/Categories`);
-
-      if (Array.isArray(res.data)) {
-        setCategories(res.data);
-      } else if (Array.isArray(res.data.data)) {
-        setCategories(res.data.data);
-      } else {
-        setCategories([]);
+  // const [user, setUser] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    const axiosData = async () => {
+      try{
+        const responses = await axios.all([
+          axios.get(`${BASE_URL}/products`)
+        ]);
+        const [resProducts] = responses
+        setProducts(resProducts.data.data)
+        console.log(resProducts.data.data)
       }
-    } catch (error) {
-      console.error("cat error", error);
-      setCategories([]);
-    }
+      catch (error){
+        console.log("Fetching Problem",error)
+      }
+    };
+    axiosData()
+  }, []);
+  const contextData = {
+    products,
+    setProducts,
+    error,
+    setError
   };
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
 
   return (
     <MainContext.Provider value={{ categories }}>
