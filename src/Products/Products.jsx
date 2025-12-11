@@ -1,18 +1,17 @@
 // src/Pages/Products.jsx və ya haradadırsa
 import  { useContext } from "react";
 import MainContext from "../Context/Context";
+import Loading from "../Loading/Loading";
+import Error from "../Error/Error";
+import { Navigate } from "react-router-dom";
 
 const Products = () => {
-  const { products, error } = useContext(MainContext);
+  const { products, error ,loading } = useContext(MainContext);
 
-  if (error) {
-    return <p style={{ color: "red" }}>Xəta: {error}</p>;
+  if(loading){
+     return <Loading/> 
   }
-
-  if (!products || products.length === 0) {
-    return <p>Məhsul tapılmadı.</p>;
-  }
-
+  
   return (
     <div>
       <h2>Məhsullar</h2>

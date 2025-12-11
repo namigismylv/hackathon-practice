@@ -28,6 +28,8 @@ import SessionCalendar from "../Member/SessionCalendar";
 import MyReservations from "../Member/MyReservations";
 import CategoryList from "../Admin/CategoryList";
 import Products from "../Products/Products";
+import Error from "../Error/Error";
+import Loading from "../Loading/Loading";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <Products />,
+  },
+  {
+    path:"/loading",
+    element:<Loading/>
   },
 
   // AUTH
@@ -161,7 +167,7 @@ const router = createBrowserRouter([
   // 404
   {
     path: "*",
-    element: <h2>404 – Səhifə tapılmadı</h2>,
+    element: <Error/>,
   },
 ]);
 
