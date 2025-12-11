@@ -6,12 +6,8 @@ import Error from "../Error/Error";
 import { Navigate } from "react-router-dom";
 
 const Products = () => {
-  const { products, error ,loading } = useContext(MainContext);
-
-  if(loading){
-     return <Loading/> 
-  }
-  
+  const { products, error } = useContext(MainContext);
+  if (error) return <Error />;
   return (
     <div>
       <h2>Məhsullar</h2>

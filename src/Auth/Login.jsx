@@ -5,7 +5,7 @@ const Login = () => {
   const { categories } = useContext(MainContext);
 
   return (
-  <div></div>
+  <div>Login</div>
   );
 };
 
