@@ -32,14 +32,12 @@ function App() {
       } catch (error) {
         console.log("Fetching Problem", error);
         setError("melumatlar yuklenmedi");
-        setLoading(false);
       } finally {
         setLoading(false);
       }
     };
     axiosData();
   }, []);
-  if (error) return <Error />;
   if (loading) return <Loading />;
   const contextData = {
     products,
