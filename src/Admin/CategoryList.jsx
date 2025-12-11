@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import MainContext from "../Context/Context";
+import Error from "../Error/Error";
+import Loading from "../Loading/Loading";
 
 const CategoryList = () => {
-  const { categories } = useContext(MainContext);
-
+  const { categories,error,loading } = useContext(MainContext);
+ 
   return (
     <ul>
       {categories.map((c,index) => {

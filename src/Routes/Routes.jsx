@@ -35,25 +35,31 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Navigate to="/login" />,
+    errorElement: <Error/>
   },
   // Product
   {
     path: "/products",
     element: <Products />,
+    errorElement: <Error/>
   },
   {
     path:"/loading",
-    element:<Loading/>
+    element:<Loading/>,
+    errorElement: <Error/>
+    
   },
 
   // AUTH
   {
     path: "/login",
     element: <Login />,
+    errorElement: <Error/>
   },
   {
     path: "/register",
     element: <Register />,
+    errorElement: <Error/>
   },
 
   // ADMIN
@@ -63,7 +69,7 @@ const router = createBrowserRouter([
       // <ProtectedRoute allowedRoles={["Admin"]}>
       <TrainerList />
       // </ProtectedRoute>
-    ),
+    ),errorElement: <Error/>
   },
   {
     path: "/admin/trainers/add",
@@ -71,7 +77,7 @@ const router = createBrowserRouter([
       // <ProtectedRoute allowedRoles={["Admin"]}>
       <AddTrainer />
       // </ProtectedRoute>
-    ),
+    ),errorElement: <Error/>
   },
   {
     path: "/admin/sessions",
@@ -79,7 +85,7 @@ const router = createBrowserRouter([
       // <ProtectedRoute allowedRoles={["Admin"]}>
       <SessionList />
       // </ProtectedRoute>
-    ),
+    ),errorElement: <Error/>
   },
   {
     path: "/admin/sessions/add",
@@ -88,6 +94,7 @@ const router = createBrowserRouter([
       <AddSession />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
 
   // OPERATOR
@@ -98,6 +105,7 @@ const router = createBrowserRouter([
       <MemberList />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
   {
     path: "/operator/reservations/add",
@@ -106,6 +114,7 @@ const router = createBrowserRouter([
       <AddReservation />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
   {
     path: "/operator/members/:memberId/reservations",
@@ -114,6 +123,7 @@ const router = createBrowserRouter([
       <MemberReservations />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
 
   // TRAINER
@@ -124,6 +134,7 @@ const router = createBrowserRouter([
       <TodaySessions />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
   {
     path: "/trainer/upcoming",
@@ -132,6 +143,7 @@ const router = createBrowserRouter([
       <UpcomingSessions />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
 
   // MEMBER
@@ -142,6 +154,7 @@ const router = createBrowserRouter([
       <TrainerListMember />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
   {
     path: "/member/calendar",
@@ -150,6 +163,7 @@ const router = createBrowserRouter([
       <SessionCalendar />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
   {
     path: "/member/my-reservations",
@@ -158,10 +172,12 @@ const router = createBrowserRouter([
       <MyReservations />
       // </ProtectedRoute>
     ),
+    errorElement: <Error/>
   },
   {
     path: "/admin/categories",
     element: <CategoryList />,
+    errorElement: <Error/>
   },
 
   // 404
