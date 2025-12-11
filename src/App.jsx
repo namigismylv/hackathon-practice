@@ -6,6 +6,8 @@ import MainContext from "./Context/Context";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../src/BASE_URL";
+import Loading from "./Loading/Loading";
+import Error from "./Error/Error";
 // import { useMemo, useState } from "react";
 
 function App() {
@@ -29,13 +31,16 @@ function App() {
         console.log(resProducts.data.data);
       } catch (error) {
         console.log("Fetching Problem", error);
-      } finally{
-        setLoading(false)
+        setError("melumatlar yuklenmedi");
+        setLoading(false);
+      } finally {
+        setLoading(false);
       }
-  
     };
     axiosData();
   }, []);
+  if (error) return <Error />;
+  if (loading) return <Loading />;
   const contextData = {
     products,
     setProducts,
