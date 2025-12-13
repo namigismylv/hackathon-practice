@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./Routes/Routes";
+
+import MainContext from "./Context/Context";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "../src/BASE_URL";
+import Loading from "./Loading/Loading";
+import Error from "./Error/Error";
+// import { useMemo, useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [user, setUser] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    const axiosData = async () => {
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        const responses = await axios.all([
+          axios.get(`${BASE_URL}/products`),
+          axios.get(`${BASE_URL}/Categories`),
+        ]);
+        const [resProducts, resCategories] = responses;
+        setProducts(resProducts.data.data);
+        setCategories(resCategories.data.data);
+        console.log(resCategories.data.data);
+        console.log(resProducts.data.data);
+      } catch (error) {
+        console.log("Fetching Problem", error);
+        setError("melumatlar yuklenmedi");
+      } finally {
+        setLoading(false);
+      }
+    };
+    axiosData();
+  }, []);
+  if (loading) return <Loading />;
+  const contextData = {
+    products,
+    setProducts,
+    error,
+    setError,
+    loading,
+    categories,
+    setCategories,
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <MainContext.Provider value={contextData}>
+      <RouterProvider router={router} />
+    </MainContext.Provider>
+  );
 }
 
-export default App
+export default App;
